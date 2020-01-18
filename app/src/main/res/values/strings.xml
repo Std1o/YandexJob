@@ -17,6 +17,6 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="title_activity_logged_out">LoggedOutActivity</string>
-    
+
     <string name="consent">Регистрируясь вы подтверждаете своё согласие на обработку ваших персональных данных\n***\nА так же подтверждаете что вы ознакомлены с <a href="https://vk.com">условиями пользовательского соглашения</a>\nИ согласны с условиями <a href="https://vk.com">договора оферты</a></string>
 </resources>
