@@ -27,6 +27,7 @@ public class LoggedOutActivity extends AppCompatActivity {
                 startActivity(new Intent(this, Registration1Activity.class));
                 break;
             case R.id.btnAuth:
+                startActivity(new Intent(this, AuthActivity.class));
                 break;
             case R.id.btnAutopark:
                 startActivity(new Intent(this, AutoparkActivity.class));
