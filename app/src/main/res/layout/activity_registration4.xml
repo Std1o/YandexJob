@@ -113,6 +113,6 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="50dp"
         android:layout_marginRight="30dp"
-        android:text="Продолжить"
+        android:text="@string/register"
         android:textColor="@android:color/black" />
 </LinearLayout>
