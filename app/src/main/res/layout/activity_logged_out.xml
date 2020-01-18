@@ -35,19 +35,22 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginRight="30dp"
         android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:onClick="onClick"
         android:text="Зарегистрироваться"
         android:textColor="@android:color/black" />
 
     <Button
+        android:id="@+id/btnAuth"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="7dp"
+        android:layout_marginRight="30dp"
+        android:onClick="onClick"
         android:text="Авторизироваться"
         android:textColor="@android:color/black" />
 
@@ -67,12 +70,14 @@
         app:srcCompat="@drawable/car" />
 
     <Button
+        android:id="@+id/btnAutopark"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:onClick="onClick"
         android:text="Наш автопарк"
         android:textColor="@android:color/black" />
 </LinearLayout>
