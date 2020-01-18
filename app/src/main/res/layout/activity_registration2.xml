@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
         android:textSize="25sp"
         android:textColor="@color/colorAccent"
         android:textAlignment="center"
@@ -21,7 +22,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="left"
-        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:id="@+id/radioGroup">
@@ -49,7 +50,7 @@
     </RadioGroup>
 
     <EditText
-        android:id="@+id/etName"
+        android:id="@+id/etBrand"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -58,12 +59,12 @@
         android:layout_marginRight="50dp"
         android:background="@drawable/selector_lines_edit_view_bg"
         android:ems="10"
-        android:hint="Имя"
+        android:hint="Марка"
         android:inputType="textPersonName|textCapWords"
         android:padding="8dp" />
 
     <EditText
-        android:id="@+id/etLastName"
+        android:id="@+id/etModel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -72,12 +73,12 @@
         android:layout_marginRight="50dp"
         android:background="@drawable/selector_lines_edit_view_bg"
         android:ems="10"
-        android:hint="Фамилия"
+        android:hint="Модель"
         android:inputType="textPersonName|textCapWords"
         android:padding="8dp" />
 
     <EditText
-        android:id="@+id/etMiddleName"
+        android:id="@+id/etTSType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -86,12 +87,12 @@
         android:layout_marginRight="50dp"
         android:background="@drawable/selector_lines_edit_view_bg"
         android:ems="10"
-        android:hint="Отчество"
+        android:hint="Тип ТС"
         android:inputType="textPersonName|textCapWords"
         android:padding="8dp" />
 
     <EditText
-        android:id="@+id/etBirthDate"
+        android:id="@+id/etColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -100,22 +101,22 @@
         android:layout_marginRight="50dp"
         android:background="@drawable/selector_lines_edit_view_bg"
         android:ems="10"
-        android:hint="Дата рождения"
+        android:hint="Цвет"
+        android:inputType="textPersonName|textCapWords"
+        android:padding="8dp" />
+
+    <EditText
+        android:id="@+id/etReleaseYear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/selector_lines_edit_view_bg"
+        android:ems="10"
+        android:hint="Год выпуска"
         android:inputType="date"
-        android:padding="8dp" />
-
-    <EditText
-        android:id="@+id/etUserPhone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="50dp"
-        android:background="@drawable/selector_lines_edit_view_bg"
-        android:ems="10"
-        android:hint="Номер телефона"
-        android:inputType="phone"
         android:padding="8dp" />
 
     <View
