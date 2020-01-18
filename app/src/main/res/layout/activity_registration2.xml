@@ -138,5 +138,6 @@
         android:layout_marginRight="30dp"
         android:layout_marginTop="50dp"
         android:text="Продолжить"
+        android:onClick="onClick"
         android:textColor="@android:color/black" />
 </LinearLayout>
