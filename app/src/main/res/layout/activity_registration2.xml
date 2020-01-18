@@ -5,7 +5,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Registration1Activity">
+    tools:context=".Registration2Activity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textSize="25sp"
+        android:textColor="@color/colorAccent"
+        android:textAlignment="center"
+        android:text="Вы будете работать на автомашине" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="left"
+        android:layout_centerInParent="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/radioGroup">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:text="Личная"
+            style="@style/MyRadioButtonStyle"
+            android:id="@+id/radioButton"
+            android:gravity="center"
+            android:layout_weight="1"/>
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            style="@style/MyRadioButtonStyle"
+            android:text="Аренда"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/radioButton2" />
+    </RadioGroup>
 
     <EditText
         android:id="@+id/etName"
@@ -77,46 +118,6 @@
         android:inputType="phone"
         android:padding="8dp" />
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Ваше фото"
-                android:textColor="@android:color/black" />
-
-            <Button
-                android:id="@+id/btnUpload"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/bg_bordered"
-                android:foreground="@drawable/my_ripple"
-                android:onClick="onClick"
-                android:text="+"
-                android:textColor="@android:color/white"
-                android:textSize="50sp" />
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@drawable/border_photo"
-            android:layout_marginRight="40dp"
-            android:layout_gravity="bottom|right"/>
-    </FrameLayout>
-
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
@@ -127,15 +128,14 @@
         android:background="@android:color/black" />
 
     <Button
-        android:id="@+id/btnContinue"
+        android:id="@+id/btnAutopark"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="50dp"
         android:layout_marginRight="30dp"
-        android:onClick="onClick"
+        android:layout_marginTop="50dp"
         android:text="Продолжить"
         android:textColor="@android:color/black" />
 </LinearLayout>
