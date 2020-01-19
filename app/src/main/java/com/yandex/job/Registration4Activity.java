@@ -27,6 +27,8 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,7 +53,7 @@ public class Registration4Activity extends AppCompatActivity {
     }
 
     public void onClick(View v) {
-        request();
+        getDataFromEt();
     }
 
     private void initViews() {
@@ -66,6 +68,7 @@ public class Registration4Activity extends AppCompatActivity {
             RegistrationData.login = etLogin.getText().toString();
             RegistrationData.password = etPass.getText().toString();
             RegistrationData.card = etCard.getText().toString();
+            request();
         }
         else {
             etConfirmPass.setError("Пароли не совпадают");
@@ -76,20 +79,20 @@ public class Registration4Activity extends AppCompatActivity {
 
         Map<String, String> params = new HashMap<>();
         params.put("command", "addDriver");
-        params.put("famaly", "famaly");
-        params.put("name", "name");
-        params.put("patronymic", "patronymic");
-        params.put("driverPhone", "89101234567");
+        params.put("famaly", RegistrationData.lastName);
+        params.put("name", RegistrationData.name);
+        params.put("patronymic", RegistrationData.middleName);
+        params.put("driverPhone", RegistrationData.phone);
         params.put("work", "own");
-        params.put("car_mark", "car_mark");
-        params.put("car_model", "car_model");
-        params.put("car_color", "car_color");
-        params.put("car_type", "car_type");
-        params.put("car_year", "2010");
-        params.put("login", "login");
-        params.put("pass", "pass");
-        params.put("card", "card");
-        params.put("birthday", "11-01-2020");
+        params.put("car_mark", RegistrationData.brand);
+        params.put("car_model", RegistrationData.model);
+        params.put("car_color", RegistrationData.color);
+        params.put("car_type", RegistrationData.TSType);
+        params.put("car_year", RegistrationData.year);
+        params.put("login", RegistrationData.login);
+        params.put("pass", RegistrationData.password);
+        params.put("card", RegistrationData.card);
+        params.put("birthday", RegistrationData.birthDate);
         System.out.println(params);
 
 

@@ -46,6 +46,9 @@ public class Registration1Activity extends AppCompatActivity {
     }
 
     private void getDataFromEt() {
+        etBirthDate.setText(etBirthDate.getText().toString().replace(".", "-"));
+        etBirthDate.setText(etBirthDate.getText().toString().replace("/", "-"));
+
         RegistrationData.name = etName.getText().toString();
         RegistrationData.lastName = etLastName.getText().toString();
         RegistrationData.middleName = etMiddleName.getText().toString();
