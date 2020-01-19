@@ -8,7 +8,7 @@
     tools:context=".Registration4Activity">
 
     <EditText
-        android:id="@+id/etName"
+        android:id="@+id/etLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -22,7 +22,7 @@
         android:padding="8dp" />
 
     <EditText
-        android:id="@+id/etLastName"
+        android:id="@+id/etPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -36,7 +36,7 @@
         android:padding="8dp" />
 
     <EditText
-        android:id="@+id/etMiddleName"
+        android:id="@+id/etConfirmPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -113,6 +113,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="50dp"
         android:layout_marginRight="30dp"
+        android:onClick="onClick"
         android:text="@string/register"
         android:textColor="@android:color/black" />
 </LinearLayout>
