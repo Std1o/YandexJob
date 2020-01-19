@@ -11,6 +11,7 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ import java.util.Map;
 public class Registration4Activity extends AppCompatActivity {
     
     TextView tvConsent;
+    EditText etLogin, etPass, etConfirmPass, etCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +47,29 @@ public class Registration4Activity extends AppCompatActivity {
         
         tvConsent = findViewById(R.id.tvConsent);
         tvConsent.setMovementMethod(LinkMovementMethod.getInstance());
+        initViews();
     }
 
     public void onClick(View v) {
         request();
+    }
+
+    private void initViews() {
+        etLogin = findViewById(R.id.etLogin);
+        etPass = findViewById(R.id.etPass);
+        etConfirmPass = findViewById(R.id.etConfirmPass);
+        etCard = findViewById(R.id.etCard);
+    }
+
+    private void getDataFromEt() {
+        if (etPass.getText().toString().equals(etConfirmPass.getText().toString())) {
+            RegistrationData.login = etLogin.getText().toString();
+            RegistrationData.password = etPass.getText().toString();
+            RegistrationData.card = etCard.getText().toString();
+        }
+        else {
+            etConfirmPass.setError("Пароли не совпадают");
+        }
     }
 
     private void request() {
