@@ -55,7 +55,6 @@ public class Fragment1 extends Fragment {
         color.setText(AutoparkActivity.list.get(position).color);
         price.setText(AutoparkActivity.list.get(position).price);
         year.setText(AutoparkActivity.list.get(position).year);
-        System.out.println(AutoparkActivity.list.get(position).photo);
         Glide.with(getContext())
                 .load("http://some-company.svkcom.ru/" +
                         AutoparkActivity.list.get(position).photo)

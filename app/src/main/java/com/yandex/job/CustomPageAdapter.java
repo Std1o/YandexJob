@@ -31,11 +31,7 @@ public class CustomPageAdapter extends FragmentPagerAdapter {
 
         Fragment fragment1 = new Fragment1();
         Fragment fragment2 = new Fragment2();
-        Fragment1.position = position;
-        Fragment2.position = position;
-
         return (position % 2 == 0) ? fragment1 : fragment2;
-
     }
 
 

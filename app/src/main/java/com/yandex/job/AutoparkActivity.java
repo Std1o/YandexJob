@@ -15,6 +15,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.yandex.job.fragments.Fragment1;
+import com.yandex.job.fragments.Fragment2;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,7 +53,6 @@ public class AutoparkActivity extends AppCompatActivity {
 
                         try {
                             obj = new JSONObject(response);
-                            System.out.println(obj);
                             JSONArray jsonArray = obj.getJSONArray("car");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject carObject = jsonArray.getJSONObject(i);
@@ -86,5 +87,26 @@ public class AutoparkActivity extends AppCompatActivity {
         mViewPager.setAdapter(mCustomPageAdapter);
 
         mViewPager.getCurrentItem();
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                Fragment1.position = position;
+                Fragment2.position = position;
+
+                System.out.println(position);
+                System.out.println(AutoparkActivity.list.get(position).brand);
+                mCustomPageAdapter.getItem(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 }
