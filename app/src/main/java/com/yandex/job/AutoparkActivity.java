@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -15,6 +18,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.yandex.job.fragments.Fragment1;
 import com.yandex.job.fragments.Fragment2;
 
@@ -30,6 +35,15 @@ public class AutoparkActivity extends AppCompatActivity {
     CustomPageAdapter mCustomPageAdapter;
     ViewPager mViewPager;
 
+    public static int position = 0;
+
+    public TextView brand;
+    public TextView color;
+    public TextView price;
+    public TextView year;
+    public ImageView photo;
+    public TextView trans;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +54,7 @@ public class AutoparkActivity extends AppCompatActivity {
         s.setSpan(new ForegroundColorSpan(Color.BLACK), 0, title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         getSupportActionBar().setTitle(s);
         getAuto();
+        initViews();
     }
 
     private void getAuto() {
@@ -63,8 +78,11 @@ public class AutoparkActivity extends AppCompatActivity {
                                         carObject.getString("year"),
                                         carObject.getString("foto"),
                                         carObject.getString("trans")));
+                                setInfo();
                             }
-                            setPagerAdapter();
+                            for (AutoParkModel model : list) {
+                                System.out.println(model.brand);
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -78,7 +96,42 @@ public class AutoparkActivity extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
-    private void setPagerAdapter() {
+    private void initViews() {
+        brand = findViewById(R.id.tvBrand);
+        color = findViewById(R.id.tvColor);
+        price = findViewById(R.id.tvPrice);
+        year = findViewById(R.id.tvYear);
+        photo = findViewById(R.id.ivPhoto);
+        trans = findViewById(R.id.tvTrans);
+    }
+
+    private void setInfo() {
+        brand.setText(AutoparkActivity.list.get(position).brand);
+        color.setText(AutoparkActivity.list.get(position).color);
+        price.setText(AutoparkActivity.list.get(position).price);
+        year.setText(AutoparkActivity.list.get(position).year);
+        Glide.with(this)
+                .load("http://some-company.svkcom.ru/" +
+                        AutoparkActivity.list.get(position).photo)
+                .apply(new RequestOptions()
+                        .override(900, 600)
+                        .placeholder(R.drawable.progress_animation)
+                        .dontAnimate()
+                        .dontTransform())
+                .into(photo);
+        trans.setText(AutoparkActivity.list.get(position).trans);
+    }
+    
+    public void onClick(View v) {
+        position++;
+        if (position < list.size()) {
+            setInfo();
+        }
+    }
+    
+    
+
+    /*private void setPagerAdapter() {
         mCustomPageAdapter = new CustomPageAdapter(getSupportFragmentManager(), this);
 
         //getPosisi.getItem();
@@ -108,5 +161,5 @@ public class AutoparkActivity extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
 }
