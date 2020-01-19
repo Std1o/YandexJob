@@ -15,10 +15,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class AutoparkActivity extends AppCompatActivity {
+
+    ArrayList<AutoParkModel> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +39,7 @@ public class AutoparkActivity extends AppCompatActivity {
 
     private void getAuto() {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://some-company.svkcom.ru/api/listCar.php";
+        String url = "http://some-company.svkcom.ru/api/listCar.php";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -43,7 +48,20 @@ public class AutoparkActivity extends AppCompatActivity {
 
                         try {
                             obj = new JSONObject(response);
-                            System.out.println(obj);
+                            JSONArray jsonArray = obj.getJSONArray("car");
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject carObject = jsonArray.getJSONObject(i);
+                                list.add(new AutoParkModel(carObject.getString("ID"),
+                                        carObject.getString("marka"),
+                                        carObject.getString("color"),
+                                        carObject.getString("price"),
+                                        carObject.getString("year"),
+                                        carObject.getString("foto"),
+                                        carObject.getString("trans")));
+                            }
+                            for (AutoParkModel s: list) {
+                                System.out.println(s.brand);
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
