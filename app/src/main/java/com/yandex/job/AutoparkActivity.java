@@ -1,6 +1,7 @@
 package com.yandex.job;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -23,7 +24,9 @@ import java.util.ArrayList;
 
 public class AutoparkActivity extends AppCompatActivity {
 
-    ArrayList<AutoParkModel> list = new ArrayList<>();
+    public static ArrayList<AutoParkModel> list = new ArrayList<>();
+    CustomPageAdapter mCustomPageAdapter;
+    ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,7 @@ public class AutoparkActivity extends AppCompatActivity {
 
                         try {
                             obj = new JSONObject(response);
+                            System.out.println(obj);
                             JSONArray jsonArray = obj.getJSONArray("car");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject carObject = jsonArray.getJSONObject(i);
@@ -59,9 +63,7 @@ public class AutoparkActivity extends AppCompatActivity {
                                         carObject.getString("foto"),
                                         carObject.getString("trans")));
                             }
-                            for (AutoParkModel s: list) {
-                                System.out.println(s.brand);
-                            }
+                            setPagerAdapter();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -73,5 +75,16 @@ public class AutoparkActivity extends AppCompatActivity {
             }
         });
         queue.add(stringRequest);
+    }
+
+    private void setPagerAdapter() {
+        mCustomPageAdapter = new CustomPageAdapter(getSupportFragmentManager(), this);
+
+        //getPosisi.getItem();
+
+        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPager.setAdapter(mCustomPageAdapter);
+
+        mViewPager.getCurrentItem();
     }
 }
