@@ -58,7 +58,7 @@ public class Registration4Activity extends AppCompatActivity {
         params.put("famaly", "famaly");
         params.put("name", "name");
         params.put("patronymic", "patronymic");
-        params.put("phone", "89101234567");
+        params.put("driverPhone", "89101234567");
         params.put("work", "own");
         params.put("car_mark", "car_mark");
         params.put("car_model", "car_model");
@@ -67,6 +67,8 @@ public class Registration4Activity extends AppCompatActivity {
         params.put("car_year", "2010");
         params.put("login", "login");
         params.put("pass", "pass");
+        params.put("card", "card");
+        params.put("birthday", "11-01-2020");
         System.out.println(params);
 
 
