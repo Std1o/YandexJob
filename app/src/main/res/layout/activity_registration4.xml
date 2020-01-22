@@ -18,7 +18,7 @@
         android:background="@drawable/selector_lines_edit_view_bg"
         android:ems="10"
         android:hint="Логин"
-        android:inputType="textPersonName|textCapWords"
+        android:inputType="textPersonName"
         android:padding="8dp" />
 
     <EditText

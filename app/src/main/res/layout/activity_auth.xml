@@ -15,7 +15,7 @@
         app:srcCompat="@drawable/renault" />
 
     <EditText
-        android:id="@+id/etName"
+        android:id="@+id/etLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -24,11 +24,11 @@
         android:background="@drawable/selector_lines_edit_view_bg"
         android:ems="10"
         android:hint="Введите логин"
-        android:inputType="textPersonName|textCapWords"
+        android:inputType="textPersonName"
         android:padding="8dp" />
 
     <EditText
-        android:id="@+id/etLastName"
+        android:id="@+id/etPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -38,7 +38,7 @@
         android:background="@drawable/selector_lines_edit_view_bg"
         android:ems="10"
         android:hint="Введите пароль"
-        android:inputType="textPersonName|textCapWords"
+        android:inputType="textPassword"
         android:padding="8dp" />
 
     <View
