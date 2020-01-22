@@ -55,6 +55,7 @@ public class AutoparkActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(s);
         getAuto();
         initViews();
+        position = 0;
     }
 
     private void getAuto() {
