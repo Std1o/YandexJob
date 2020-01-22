@@ -83,7 +83,7 @@ public class Registration4Activity extends AppCompatActivity {
         params.put("name", RegistrationData.name);
         params.put("patronymic", RegistrationData.middleName);
         params.put("driverPhone", RegistrationData.phone);
-        params.put("work", "own");
+        params.put("work", RegistrationData.workType);
         params.put("car_mark", RegistrationData.brand);
         params.put("car_model", RegistrationData.model);
         params.put("car_color", RegistrationData.color);

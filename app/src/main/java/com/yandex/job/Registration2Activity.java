@@ -10,6 +10,7 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioButton;
 
 public class Registration2Activity extends AppCompatActivity {
 
@@ -37,7 +38,28 @@ public class Registration2Activity extends AppCompatActivity {
         etTSType = findViewById(R.id.etTSType);
         etColor = findViewById(R.id.etColor);
         etReleaseYear = findViewById(R.id.etReleaseYear);
+
+        RadioButton redRadioButton = findViewById(R.id.radioButton1);
+        redRadioButton.setOnClickListener(radioButtonClickListener);
+
+        RadioButton greenRadioButton = findViewById(R.id.radioButton2);
+        greenRadioButton.setOnClickListener(radioButtonClickListener);
     }
+
+    View.OnClickListener radioButtonClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            RadioButton rb = (RadioButton)v;
+            switch (rb.getId()) {
+                case R.id.radioButton1:
+                    RegistrationData.workType = "own";
+                    break;
+                case R.id.radioButton2:
+                    RegistrationData.workType = "rent";
+                    break;
+            }
+        }
+    };
 
     private void getDataFromEt() {
         RegistrationData.brand = etBrand.getText().toString();

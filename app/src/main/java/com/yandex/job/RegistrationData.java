@@ -15,4 +15,5 @@ public class RegistrationData {
     public static String login;
     public static String password;
     public static String card;
+    public static String workType;
 }

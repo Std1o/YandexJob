@@ -31,7 +31,7 @@
             android:layout_height="60dp"
             android:text="Личная"
             style="@style/MyRadioButtonStyle"
-            android:id="@+id/radioButton"
+            android:id="@+id/radioButton1"
             android:gravity="center"
             android:layout_weight="1"/>
 
