@@ -1,14 +1,21 @@
 package com.yandex.job;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +27,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.yandex.job.fragments.Fragment1;
 import com.yandex.job.fragments.Fragment2;
 
@@ -56,6 +65,7 @@ public class AutoparkActivity extends AppCompatActivity {
         getAuto();
         initViews();
         position = 0;
+        list = new ArrayList<>();
     }
 
     private void getAuto() {
@@ -112,15 +122,31 @@ public class AutoparkActivity extends AppCompatActivity {
         price.setText(AutoparkActivity.list.get(position).price);
         year.setText(AutoparkActivity.list.get(position).year);
         Glide.with(this)
+                .asBitmap()
                 .load("http://some-company.svkcom.ru/" +
                         AutoparkActivity.list.get(position).photo)
-                .apply(new RequestOptions()
-                        .override(900, 600)
-                        .placeholder(R.drawable.progress_animation)
-                        .dontAnimate()
-                        .dontTransform())
-                .into(photo);
+                .into(new CustomTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                        ImageViewAnimatedChange(getApplicationContext(), photo, resource);
+                    }
+
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+                    }
+                });
         trans.setText(AutoparkActivity.list.get(position).trans);
+    }
+
+    public static void ImageViewAnimatedChange(Context c, final ImageView v, final Bitmap new_image) {
+        v.setImageBitmap(new_image);
+        final Animation anim_in  = AnimationUtils.loadAnimation(c, android.R.anim.fade_in);
+        anim_in.setAnimationListener(new Animation.AnimationListener() {
+            @Override public void onAnimationStart(Animation animation) {}
+            @Override public void onAnimationRepeat(Animation animation) {}
+            @Override public void onAnimationEnd(Animation animation) {}
+        });
+        v.startAnimation(anim_in);
     }
     
     public void onClick(View v) {
