@@ -22,20 +22,23 @@
         android:layout_marginTop="30dp">
 
         <Button
+            android:id="@+id/btnDL"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginLeft="30dp"
             android:background="@drawable/bg_bordered"
             android:foreground="@drawable/my_ripple"
+            android:onClick="onClick"
             android:text="+"
             android:textColor="@android:color/white"
             android:textSize="50sp" />
 
         <ImageView
+            android:id="@+id/ivDL1"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:background="@drawable/border_photo"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/border_photo" />
 
         <ImageView
             android:id="@+id/imageView3"
