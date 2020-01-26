@@ -36,6 +36,7 @@ public class Registration4Activity extends AppCompatActivity {
     
     TextView tvConsent;
     EditText etLogin, etPass, etConfirmPass, etCard;
+    PrefManager prefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class Registration4Activity extends AppCompatActivity {
         tvConsent = findViewById(R.id.tvConsent);
         tvConsent.setMovementMethod(LinkMovementMethod.getInstance());
         initViews();
+        prefManager = new PrefManager(this);
     }
 
     public void onClick(View v) {
@@ -103,6 +105,51 @@ public class Registration4Activity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         System.out.println(response);
+                        try {
+                            String status = response.getString("st");
+                            String id = response.getString("ID");
+                            if (status.equals("1")) {
+                                prefManager.setId(id);
+                                uploadPhotos();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), "Ошибка связи с сервером", Toast.LENGTH_SHORT).show();
+                        Log.e("666", "Autorize - " + error);
+                    }
+                });
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(postRequest);
+    }
+
+    private void uploadPhotos() {
+        Map<String, String> params = new HashMap<>();
+        params.put("image", Registration3Activity.DL1);
+        params.put("foto", "foto_1");
+        params.put("id", prefManager.getId());
+        System.out.println(params);
+
+
+        JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.POST, "http://some-company.svkcom.ru/api/upload.php",
+
+                new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        System.out.println(response);
+                        try {
+                            String status = response.getString("st");
+                            String id = response.getString("ID");
+                            prefManager.setId(id);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 },
                 new Response.ErrorListener() {

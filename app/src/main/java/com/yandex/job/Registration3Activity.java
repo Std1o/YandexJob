@@ -22,6 +22,7 @@ import in.mayanknagwanshi.imagepicker.ImageSelectActivity;
 public class Registration3Activity extends AppCompatActivity implements View.OnClickListener {
 
     ImageView ivDL1;
+    public static String DL1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +63,8 @@ public class Registration3Activity extends AppCompatActivity implements View.OnC
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             selectedImage.compress(Bitmap.CompressFormat.JPEG, 100, baos); //bm is the bitmap object
             byte[] byteArrayImage = baos.toByteArray();
-            String encodedImage = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
-            System.out.println(encodedImage);
+            DL1 = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
+            System.out.println(DL1);
         }
     }
 }
