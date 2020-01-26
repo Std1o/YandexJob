@@ -21,8 +21,8 @@ import in.mayanknagwanshi.imagepicker.ImageSelectActivity;
 
 public class Registration3Activity extends AppCompatActivity implements View.OnClickListener {
 
-    ImageView ivDL1;
-    public static String DL1;
+    public static String photo2, photo3, photo4, photo5;
+    String currentPhoto = "photo2";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,8 @@ public class Registration3Activity extends AppCompatActivity implements View.OnC
             case R.id.btnContinue:
                 startActivity(new Intent(this, Registration4Activity.class));
                 break;
-            case R.id.btnDL:
+            case R.id.upload1:
+            case R.id.upload2:
                 selectImage();
                 break;
         }
@@ -63,8 +64,22 @@ public class Registration3Activity extends AppCompatActivity implements View.OnC
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             selectedImage.compress(Bitmap.CompressFormat.JPEG, 100, baos); //bm is the bitmap object
             byte[] byteArrayImage = baos.toByteArray();
-            DL1 = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
-            System.out.println(DL1);
+            System.out.println(currentPhoto);
+            if (currentPhoto.equals("photo2")) {
+                photo2 = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
+                currentPhoto = "photo3";
+            }
+            else if (currentPhoto.equals("photo3")) {
+                photo3 = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
+                currentPhoto = "photo4";
+            }
+            else if (currentPhoto.equals("photo4")) {
+                photo4 = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
+                currentPhoto = "photo5";
+            }
+            else if (currentPhoto.equals("photo5")) {
+                photo5 = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
+            }
         }
     }
 }

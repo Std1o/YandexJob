@@ -2,6 +2,9 @@ package com.yandex.job;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
@@ -110,7 +113,10 @@ public class Registration4Activity extends AppCompatActivity {
                             String id = response.getString("ID");
                             if (status.equals("1")) {
                                 prefManager.setId(id);
-                                uploadPhotos();
+                                uploadPhotos("foto_1", Registration1Activity.photo1);
+                                ClipboardManager clipboard = (ClipboardManager) Registration4Activity.this.getSystemService(Context.CLIPBOARD_SERVICE);
+                                ClipData clip = ClipData.newPlainText("", Registration1Activity.photo1);
+                                clipboard.setPrimaryClip(clip);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -128,10 +134,10 @@ public class Registration4Activity extends AppCompatActivity {
         requestQueue.add(postRequest);
     }
 
-    private void uploadPhotos() {
+    private void uploadPhotos(final String photoType, String image) {
         Map<String, String> params = new HashMap<>();
-        params.put("image", Registration3Activity.DL1);
-        params.put("foto", "foto_1");
+        params.put("image", image);
+        params.put("foto", photoType);
         params.put("id", prefManager.getId());
         System.out.println(params);
 
@@ -143,12 +149,17 @@ public class Registration4Activity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         System.out.println(response);
-                        try {
-                            String status = response.getString("st");
-                            String id = response.getString("ID");
-                            prefManager.setId(id);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        if (photoType.equals("foto_1")) {
+                            uploadPhotos("foto_2", Registration3Activity.photo2);
+                        }
+                        else if (photoType.equals("foto_2")) {
+                            uploadPhotos("foto_3", Registration3Activity.photo3);
+                        }
+                        else if (photoType.equals("foto_3")) {
+                            uploadPhotos("foto_4", Registration3Activity.photo4);
+                        }
+                        else if (photoType.equals("foto_4")) {
+                            uploadPhotos("foto_5", Registration3Activity.photo5);
                         }
                     }
                 },
