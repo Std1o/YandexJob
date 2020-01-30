@@ -14,6 +14,7 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Base64;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
 
@@ -23,6 +24,7 @@ public class Registration1Activity extends AppCompatActivity {
 
     EditText etName, etLastName, etMiddleName, etBirthDate, etUserPhone;
     public static String photo1;
+    ImageView ivPhoto1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,7 @@ public class Registration1Activity extends AppCompatActivity {
         if (requestCode == 1213 && resultCode == Activity.RESULT_OK) {
             String filePath = data.getStringExtra(ImageSelectActivity.RESULT_FILE_PATH);
             Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
+            ivPhoto1.setImageBitmap(selectedImage);
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             selectedImage.compress(Bitmap.CompressFormat.JPEG, 100, baos); //bm is the bitmap object
@@ -75,6 +78,7 @@ public class Registration1Activity extends AppCompatActivity {
         etMiddleName = findViewById(R.id.etMiddleName);
         etBirthDate = findViewById(R.id.etBirthDate);
         etUserPhone = findViewById(R.id.etUserPhone);
+        ivPhoto1 = findViewById(R.id.ivPhoto1);
     }
 
     private void getDataFromEt() {

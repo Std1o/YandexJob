@@ -109,9 +109,10 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/ivPhoto1"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:padding="5dp"
             android:background="@drawable/border_photo"
             android:layout_marginRight="40dp"
             android:layout_gravity="bottom|right"/>
