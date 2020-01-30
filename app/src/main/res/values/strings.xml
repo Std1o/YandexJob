@@ -9,6 +9,9 @@
 
     <string name="title">Официальный партнер <font color='#EE0000'>Я</font>ндексТакси\n«АвтоСтиль»</string>
     <string name="register">Зарегистрироваться</string>
+    <string name="app_vr">v.2.1</string>
+    <string name="tv.reg.input.phone">Введите ваш 11-значный номер телефона</string>
+    <string name="tv.reg.input.sms.code">Введите код полученный в СМС</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
