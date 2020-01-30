@@ -13,6 +13,7 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.util.Base64;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
@@ -24,6 +25,7 @@ public class Registration3Activity extends AppCompatActivity implements View.OnC
     public static String photo2, photo3, photo4, photo5;
     String currentPhoto = "photo2";
     ImageView ivPhoto2, ivPhoto3, ivPhoto4, ivPhoto5;
+    Button upload2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,9 @@ public class Registration3Activity extends AppCompatActivity implements View.OnC
         s.setSpan(new ForegroundColorSpan(Color.BLACK), 0, title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         getSupportActionBar().setTitle(s);
         initViews();
+        if (RegistrationData.workType.equals("rent")) {
+            upload2.setEnabled(false);
+        }
     }
 
     public void onClick(View v) {
@@ -53,6 +58,7 @@ public class Registration3Activity extends AppCompatActivity implements View.OnC
         ivPhoto3 = findViewById(R.id.ivPhoto3);
         ivPhoto4 = findViewById(R.id.ivPhoto4);
         ivPhoto5 = findViewById(R.id.ivPhoto5);
+        upload2 = findViewById(R.id.upload2);
     }
 
     public void selectImage() {
