@@ -53,9 +53,19 @@ public class Registration2Activity extends AppCompatActivity {
             switch (rb.getId()) {
                 case R.id.radioButton1:
                     RegistrationData.workType = "own";
+                    etBrand.setEnabled(true);
+                    etModel.setEnabled(true);
+                    etTSType.setEnabled(true);
+                    etColor.setEnabled(true);
+                    etReleaseYear.setEnabled(true);
                     break;
                 case R.id.radioButton2:
                     RegistrationData.workType = "rent";
+                    etBrand.setEnabled(false);
+                    etModel.setEnabled(false);
+                    etTSType.setEnabled(false);
+                    etColor.setEnabled(false);
+                    etReleaseYear.setEnabled(false);
                     break;
             }
         }
