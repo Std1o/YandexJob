@@ -34,6 +34,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     PrefManager prefManager;
     CircleImageView ivProfilePhoto;
+    String fullName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +57,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(this, LoggedOutActivity.class));
             finish();
         }
+        fullName = prefManager.getName() + " " + prefManager.getLastName();
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle(prefManager.getName() + " " + prefManager.getLastName());
+        setTitle(fullName);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         View hView =  navigationView.getHeaderView(0);
         ivProfilePhoto = (CircleImageView) hView.findViewById(R.id.ivProfilePhoto);
+        TextView tvUserName = (TextView) hView.findViewById(R.id.tvUserName);
+        tvUserName.setText(fullName);
         ivProfilePhoto.setImageBitmap(fromBase64(prefManager.getUserPhoto()));
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -87,6 +92,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }
+        else {
+            super.onBackPressed();
+        }
     }
 
     @Override
@@ -102,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch (id) {
             case R.id.nav_home:
-                setTitle(prefManager.getName() + " " + prefManager.getLastName());
+                setTitle(fullName);
                 break;
         }
 
