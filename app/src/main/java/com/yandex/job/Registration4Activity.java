@@ -114,9 +114,6 @@ public class Registration4Activity extends AppCompatActivity {
                             if (status.equals("1")) {
                                 prefManager.setId(id);
                                 uploadPhotos("foto_1", Registration1Activity.photo1);
-                                ClipboardManager clipboard = (ClipboardManager) Registration4Activity.this.getSystemService(Context.CLIPBOARD_SERVICE);
-                                ClipData clip = ClipData.newPlainText("", Registration1Activity.photo1);
-                                clipboard.setPrimaryClip(clip);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

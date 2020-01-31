@@ -29,8 +29,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
-import com.yandex.job.fragments.Fragment1;
-import com.yandex.job.fragments.Fragment2;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,8 +39,6 @@ import java.util.ArrayList;
 public class AutoparkActivity extends AppCompatActivity {
 
     public static ArrayList<AutoParkModel> list = new ArrayList<>();
-    CustomPageAdapter mCustomPageAdapter;
-    ViewPager mViewPager;
 
     public static int position = 0;
 

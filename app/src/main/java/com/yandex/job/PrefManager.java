@@ -8,8 +8,9 @@ public class PrefManager {
     private static final String PREF_NAME = "yandexJobPref";
 
     private static final String KEY_ID = "id";
-    private static final String KEY_PERMISSION = "permission";
-    private static final String KEY_HD = "hdConnection";
+    private static final String KEY_NAME = "name";
+    private static final String KEY_LAST_NAME = "lastName";
+    private static final String KEY_USER_PHOTO = "userPhoto";
 
     SharedPreferences pref;
     SharedPreferences.Editor editor;
@@ -32,22 +33,31 @@ public class PrefManager {
     }
 
     //----------------------------
-    public boolean getPermission() {
-        return pref.getBoolean(KEY_PERMISSION, true);
+    public String getName() {
+        return pref.getString(KEY_NAME, "");
     }
 
-    public void setPermission(boolean value) {
-        editor.putBoolean(KEY_PERMISSION, value);
+    public void setName(String value) {
+        editor.putString(KEY_NAME, value);
         editor.apply();
     }
 
     //----------------------------
-    public boolean getHD() {
-        return pref.getBoolean(KEY_HD, true);
+    public String getLastName() {
+        return pref.getString(KEY_LAST_NAME, "");
     }
 
-    public void setHD(boolean value) {
-        editor.putBoolean(KEY_HD, value);
+    public void setLastName(String value) {
+        editor.putString(KEY_LAST_NAME, value);
+        editor.apply();
+    }
+
+    public String getUserPhoto() {
+        return pref.getString(KEY_USER_PHOTO, "");
+    }
+
+    public void setUserPhoto(String value) {
+        editor.putString(KEY_USER_PHOTO, value);
         editor.apply();
     }
 }
