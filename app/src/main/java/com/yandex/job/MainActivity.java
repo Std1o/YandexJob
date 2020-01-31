@@ -50,8 +50,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startActivity(new Intent(this, LoggedOutActivity.class));
         prefManager = new PrefManager(this);
+        if (!prefManager.getLoggedIn()) {
+            startActivity(new Intent(this, LoggedOutActivity.class));
+            finish();
+        }
         Toolbar toolbar = findViewById(R.id.toolbar);
         setTitle(prefManager.getName() + " " + prefManager.getLastName());
         setSupportActionBar(toolbar);

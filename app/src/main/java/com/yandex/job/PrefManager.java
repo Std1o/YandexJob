@@ -11,6 +11,7 @@ public class PrefManager {
     private static final String KEY_NAME = "name";
     private static final String KEY_LAST_NAME = "lastName";
     private static final String KEY_USER_PHOTO = "userPhoto";
+    private static final String KEY_LOGGED_IN = "loggedIn";
 
     SharedPreferences pref;
     SharedPreferences.Editor editor;
@@ -58,6 +59,15 @@ public class PrefManager {
 
     public void setUserPhoto(String value) {
         editor.putString(KEY_USER_PHOTO, value);
+        editor.apply();
+    }
+
+    public boolean getLoggedIn() {
+        return pref.getBoolean(KEY_LOGGED_IN, false);
+    }
+
+    public void setLoggedIn(boolean value) {
+        editor.putBoolean(KEY_LOGGED_IN, value);
         editor.apply();
     }
 }

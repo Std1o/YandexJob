@@ -25,7 +25,6 @@ public class Registration1Activity extends AppCompatActivity {
     EditText etName, etLastName, etMiddleName, etBirthDate, etUserPhone;
     public static String photo1;
     ImageView ivPhoto1;
-    PrefManager prefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +34,6 @@ public class Registration1Activity extends AppCompatActivity {
         SpannableString s = new SpannableString(title);
         s.setSpan(new ForegroundColorSpan(Color.BLACK), 0, title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         getSupportActionBar().setTitle(s);
-        prefManager = new PrefManager(this);
         initViews();
     }
 
@@ -46,9 +44,6 @@ public class Registration1Activity extends AppCompatActivity {
                 break;
             case R.id.btnContinue:
                 getDataFromEt();
-                prefManager.setName(etName.getText().toString());
-                prefManager.setLastName(etLastName.getText().toString());
-                prefManager.setUserPhoto(photo1);
                 startActivity(new Intent(this, Registration2Activity.class));
                 break;
         }

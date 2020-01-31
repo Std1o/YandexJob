@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
@@ -157,6 +158,14 @@ public class Registration4Activity extends AppCompatActivity {
                         }
                         else if (photoType.equals("foto_4")) {
                             uploadPhotos("foto_5", Registration3Activity.photo5);
+                        }
+                        else if (photoType.equals("foto_5")){
+                            prefManager.setName(RegistrationData.name);
+                            prefManager.setLastName(RegistrationData.lastName);
+                            prefManager.setUserPhoto(Registration1Activity.photo1);
+                            prefManager.setLoggedIn(true);
+                            startActivity(new Intent(Registration4Activity.this, MainActivity.class));
+                            finish();
                         }
                     }
                 },
