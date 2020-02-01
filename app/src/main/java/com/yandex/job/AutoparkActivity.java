@@ -3,6 +3,7 @@ package com.yandex.job;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
@@ -14,6 +15,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -29,6 +31,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.github.ybq.parallaxviewpager.ParallaxViewPager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,14 +43,13 @@ public class AutoparkActivity extends AppCompatActivity {
 
     public static ArrayList<AutoParkModel> list = new ArrayList<>();
 
-    public static int position = 0;
-
     public TextView brand;
     public TextView color;
     public TextView price;
     public TextView year;
-    public ImageView photo;
+    public ImageView ivItem;
     public TextView trans;
+    private ParallaxViewPager mParallaxViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +61,8 @@ public class AutoparkActivity extends AppCompatActivity {
         s.setSpan(new ForegroundColorSpan(Color.BLACK), 0, title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         getSupportActionBar().setTitle(s);
         getAuto();
-        initViews();
-        position = 0;
         list = new ArrayList<>();
+        mParallaxViewPager = (ParallaxViewPager) findViewById(R.id.viewpager);
     }
 
     private void getAuto() {
@@ -85,7 +86,7 @@ public class AutoparkActivity extends AppCompatActivity {
                                         carObject.getString("year"),
                                         carObject.getString("foto"),
                                         carObject.getString("trans")));
-                                setInfo();
+                                initViewPager();
                             }
                             for (AutoParkModel model : list) {
                                 System.out.println(model.brand);
@@ -103,86 +104,53 @@ public class AutoparkActivity extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
-    private void initViews() {
-        brand = findViewById(R.id.tvBrand);
-        color = findViewById(R.id.tvColor);
-        price = findViewById(R.id.tvPrice);
-        year = findViewById(R.id.tvYear);
-        photo = findViewById(R.id.ivPhoto);
-        trans = findViewById(R.id.tvTrans);
-    }
+    private void initViewPager() {
+        PagerAdapter adapter = new PagerAdapter() {
 
-    private void setInfo() {
-        brand.setText(AutoparkActivity.list.get(position).brand);
-        color.setText(AutoparkActivity.list.get(position).color);
-        price.setText(AutoparkActivity.list.get(position).price);
-        year.setText(AutoparkActivity.list.get(position).year);
-        Glide.with(this)
-                .asBitmap()
-                .load("http://some-company.svkcom.ru/" +
-                        AutoparkActivity.list.get(position).photo)
-                .into(new CustomTarget<Bitmap>() {
-                    @Override
-                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                        ImageViewAnimatedChange(getApplicationContext(), photo, resource);
-                    }
-
-                    @Override
-                    public void onLoadCleared(@Nullable Drawable placeholder) {
-                    }
-                });
-        trans.setText(AutoparkActivity.list.get(position).trans);
-    }
-
-    public static void ImageViewAnimatedChange(Context c, final ImageView v, final Bitmap new_image) {
-        v.setImageBitmap(new_image);
-        final Animation anim_in  = AnimationUtils.loadAnimation(c, android.R.anim.fade_in);
-        anim_in.setAnimationListener(new Animation.AnimationListener() {
-            @Override public void onAnimationStart(Animation animation) {}
-            @Override public void onAnimationRepeat(Animation animation) {}
-            @Override public void onAnimationEnd(Animation animation) {}
-        });
-        v.startAnimation(anim_in);
-    }
-    
-    public void onClick(View v) {
-        position++;
-        if (position < list.size()) {
-            setInfo();
-        }
-    }
-    
-    
-
-    /*private void setPagerAdapter() {
-        mCustomPageAdapter = new CustomPageAdapter(getSupportFragmentManager(), this);
-
-        //getPosisi.getItem();
-
-        mViewPager = (ViewPager) findViewById(R.id.pager);
-        mViewPager.setAdapter(mCustomPageAdapter);
-
-        mViewPager.getCurrentItem();
-        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+            public boolean isViewFromObject(View arg0, Object arg1) {
+                return arg0 == arg1;
             }
 
             @Override
-            public void onPageSelected(int position) {
-                Fragment1.position = position;
-                Fragment2.position = position;
-
-                System.out.println(position);
-                System.out.println(AutoparkActivity.list.get(position).brand);
-                mCustomPageAdapter.getItem(position);
+            public void destroyItem(ViewGroup container, int position,
+                                    Object obj) {
+                container.removeView((View) obj);
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
-
+            public Object instantiateItem(ViewGroup container, int position) {
+                View view = View.inflate(container.getContext(), R.layout.pager_item, null);
+                initViews(view);
+                brand.setText(AutoparkActivity.list.get(position % list.size()).brand);
+                color.setText("Цвет: " + AutoparkActivity.list.get(position % list.size()).color);
+                price.setText("Стоимость аренды: " + AutoparkActivity.list.get(position % list.size()).price);
+                year.setText("Год выпуска: " + AutoparkActivity.list.get(position % list.size()).year);
+                trans.setText(AutoparkActivity.list.get(position % list.size()).trans);
+                Glide.with(AutoparkActivity.this)
+                        .load("http://some-company.svkcom.ru" +
+                                AutoparkActivity.list.get(position % list.size()).photo)
+                        .apply(new RequestOptions().placeholder(R.drawable.progress_animation))
+                        .into(ivItem);
+                container.addView(view, ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT);
+                return view;
             }
-        });
-    }*/
+
+            @Override
+            public int getCount() {
+                return 40;
+            }
+        };
+        mParallaxViewPager.setAdapter(adapter);
+    }
+
+    private void initViews(View view) {
+        brand = view.findViewById(R.id.tvBrand);
+        color = view.findViewById(R.id.tvColor);
+        price = view.findViewById(R.id.tvPrice);
+        year = view.findViewById(R.id.tvYear);
+        ivItem = view.findViewById(R.id.item_img);
+        trans = view.findViewById(R.id.tvTrans);
+    }
 }
