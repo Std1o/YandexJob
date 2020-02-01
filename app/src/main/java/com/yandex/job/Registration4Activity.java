@@ -107,15 +107,18 @@ public class Registration4Activity extends AppCompatActivity {
                 + "\nИмя: " + RegistrationData.name
                 + "\nОтчество: " + RegistrationData.middleName
                 + "\nДата рождения: " + RegistrationData.birthDate
-                + "\nНомер телефона: " + RegistrationData.phone
-                + "\nПараметр владения автомобилем: " + RegistrationData.workType;
+                + "\nНомер телефона: " + RegistrationData.phone;
 
         if (RegistrationData.workType.equals("own")) {
+            message += "\nПараметр владения автомобилем: Личная";
             message += "\n\nМарка: " + RegistrationData.brand
                     + "\nМодель: " + RegistrationData.model
                     + "\nТип ТС: " + RegistrationData.TSType
                     + "\nЦвет: " + RegistrationData.color
                     + "\nГод выпуска: " + RegistrationData.year;
+        }
+        else {
+            message += "\nПараметр владения автомобилем: Аренда";
         }
         message += "\n\n Номер карты: " + RegistrationData.card;
         return message;
