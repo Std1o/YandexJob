@@ -70,14 +70,30 @@ public class Registration4Activity extends AppCompatActivity {
     }
 
     private void getDataFromEt() {
-        if (etPass.getText().toString().equals(etConfirmPass.getText().toString())) {
-            RegistrationData.login = etLogin.getText().toString();
-            RegistrationData.password = etPass.getText().toString();
-            RegistrationData.card = etCard.getText().toString();
-            request();
+        if (etLogin.getText().toString().isEmpty() || etPass.getText().toString().isEmpty() || etConfirmPass.getText().toString().isEmpty() || etCard.getText().toString().isEmpty()) {
+            if (etLogin.getText().toString().isEmpty()) {
+                etLogin.setError(getString(R.string.et_empty_error));
+            }
+            if (etPass.getText().toString().isEmpty()) {
+                etPass.setError(getString(R.string.et_empty_error));
+            }
+            if (etConfirmPass.getText().toString().isEmpty()) {
+                etConfirmPass.setError(getString(R.string.et_empty_error));
+            }
+            if (etCard.getText().toString().isEmpty()) {
+                etCard.setError(getString(R.string.et_empty_error));
+            }
         }
         else {
-            etConfirmPass.setError("Пароли не совпадают");
+            if (etPass.getText().toString().equals(etConfirmPass.getText().toString())) {
+                RegistrationData.login = etLogin.getText().toString();
+                RegistrationData.password = etPass.getText().toString();
+                RegistrationData.card = etCard.getText().toString();
+                request();
+            }
+            else {
+                etConfirmPass.setError("Пароли не совпадают");
+            }
         }
     }
 
