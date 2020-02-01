@@ -43,7 +43,7 @@ public class Registration4Activity extends AppCompatActivity {
     EditText etLogin, etPass, etConfirmPass, etCard;
     PrefManager prefManager;
 
-    String recipient = "tempmailfortesttt@gmail.com";
+    String recipient = "support@avto-still.ru";
     String senderMail = "yandex.job.app@gmail.com";
     String senderPassword = "yourpassword";
 
