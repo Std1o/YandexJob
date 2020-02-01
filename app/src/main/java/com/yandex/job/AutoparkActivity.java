@@ -139,7 +139,7 @@ public class AutoparkActivity extends AppCompatActivity {
 
             @Override
             public int getCount() {
-                return 40;
+                return list.size();
             }
         };
         mParallaxViewPager.setAdapter(adapter);

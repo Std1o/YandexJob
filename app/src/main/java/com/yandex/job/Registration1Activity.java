@@ -44,7 +44,23 @@ public class Registration1Activity extends AppCompatActivity {
                 break;
             case R.id.btnContinue:
                 getDataFromEt();
-                startActivity(new Intent(this, Registration2Activity.class));
+                if (etName.getText().toString().isEmpty() || etLastName.getText().toString().isEmpty() || etMiddleName.getText().toString().isEmpty() || etUserPhone.getText().toString().isEmpty()) {
+                    if (etName.getText().toString().isEmpty()) {
+                        etName.setError(getString(R.string.et_empty_error));
+                    }
+                    if (etLastName.getText().toString().isEmpty()) {
+                        etLastName.setError(getString(R.string.et_empty_error));
+                    }
+                    if (etMiddleName.getText().toString().isEmpty()) {
+                        etMiddleName.setError(getString(R.string.et_empty_error));
+                    }
+                    if (etUserPhone.getText().toString().isEmpty()) {
+                        etUserPhone.setError(getString(R.string.et_empty_error));
+                    }
+                }
+                else {
+                    startActivity(new Intent(this, Registration2Activity.class));
+                }
                 break;
         }
     }

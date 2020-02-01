@@ -12,6 +12,7 @@
     <string name="app_vr">v.2.1</string>
     <string name="tv.reg.input.phone">Введите ваш 11-значный номер телефона</string>
     <string name="tv.reg.input.sms.code">Введите код полученный в СМС</string>
+    <string name="et_empty_error">Поле не может быть пустым</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>

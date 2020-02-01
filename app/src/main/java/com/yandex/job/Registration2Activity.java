@@ -11,6 +11,7 @@ import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 public class Registration2Activity extends AppCompatActivity {
 
@@ -28,8 +29,13 @@ public class Registration2Activity extends AppCompatActivity {
     }
 
     public void onClick(View v) {
-        getDataFromEt();
-        startActivity(new Intent(this, Registration3Activity.class));
+        if (RegistrationData.workType != null) {
+            getDataFromEt();
+            startActivity(new Intent(this, Registration3Activity.class));
+        }
+        else {
+            Toast.makeText(this, "Укажите параметр владения автомобилем", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void initViews() {
