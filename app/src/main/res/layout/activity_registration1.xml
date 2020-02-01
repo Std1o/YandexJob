@@ -8,7 +8,7 @@
     tools:context=".Registration1Activity">
 
     <EditText
-        android:id="@+id/etName"
+        android:id="@+id/etLastName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -17,12 +17,12 @@
         android:layout_marginRight="50dp"
         android:background="@drawable/selector_lines_edit_view_bg"
         android:ems="10"
-        android:hint="Имя"
+        android:hint="Фамилия"
         android:inputType="textPersonName|textCapWords"
         android:padding="8dp" />
 
     <EditText
-        android:id="@+id/etLastName"
+        android:id="@+id/etName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -31,7 +31,7 @@
         android:layout_marginRight="50dp"
         android:background="@drawable/selector_lines_edit_view_bg"
         android:ems="10"
-        android:hint="Фамилия"
+        android:hint="Имя"
         android:inputType="textPersonName|textCapWords"
         android:padding="8dp" />
 

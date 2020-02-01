@@ -24,33 +24,6 @@ public class LoggedOutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logged_out);
         prefManager = new PrefManager(this);
-        if (!prefManager.isAccepted()) {
-            checkPolicy();
-        }
-    }
-
-    private void checkPolicy() {
-        PrivacyPolicyDialog dialog = new PrivacyPolicyDialog(this,
-                "https://yadi.sk/i/eT11_pJySyT3-Q",
-                "https://yadi.sk/i/oHwtliYRFJbqnQ");
-        dialog.addPoliceLine("This application uses a unique user identifier for advertising purposes, it is shared with third-party companies.");
-        dialog.addPoliceLine("This application sends error reports, installation and send it to a server of the Fabric.io company to analyze and process it.");
-        dialog.addPoliceLine("This application requires internet access and must collect the following information: Installed applications and history of installed applications, ip address, unique installation id, token to send notifications, version of the application, time zone and information about the language of the device.");
-        dialog.addPoliceLine("All details about the use of data are available in our Privacy Policies, as well as all Terms of Service links below.");
-
-        dialog.setOnClickListener(new PrivacyPolicyDialog.OnClickListener() {
-            @Override
-            public void onAccept(boolean isFirstTime) {
-                prefManager.setAccepted(true);
-            }
-
-            @Override
-            public void onCancel() {
-                Log.e("MainActivity", "Policies not accepted");
-                finish();
-            }
-        });
-        dialog.show();
     }
 
     public void onClick(View v) {
