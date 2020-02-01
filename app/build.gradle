@@ -37,4 +37,5 @@ dependencies {
     implementation 'com.github.maayyaannkk:ImagePicker:1.0.4'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
     implementation 'com.github.ybq:parallaxviewpager:2.0.0'
+    implementation 'com.github.khirr:Android-Privacy-Policy:1.0.1'
 }
