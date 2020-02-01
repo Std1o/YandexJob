@@ -27,6 +27,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.yandex.job.gmailHelper.GMailSender;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,6 +42,10 @@ public class Registration4Activity extends AppCompatActivity {
     TextView tvConsent;
     EditText etLogin, etPass, etConfirmPass, etCard;
     PrefManager prefManager;
+
+    String recipient = "tempmailfortesttt@gmail.com";
+    String senderMail = "yandex.job.app@gmail.com";
+    String senderPassword = "yourpassword";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +100,42 @@ public class Registration4Activity extends AppCompatActivity {
                 etConfirmPass.setError("Пароли не совпадают");
             }
         }
+    }
+
+    private String getMessage() {
+        String message = "Фамилия: " + RegistrationData.lastName
+                + "\nИмя: " + RegistrationData.name
+                + "\nОтчество: " + RegistrationData.middleName
+                + "\nДата рождения: " + RegistrationData.birthDate
+                + "\nНомер телефона: " + RegistrationData.phone
+                + "\nПараметр владения автомобилем: " + RegistrationData.workType;
+
+        if (RegistrationData.workType.equals("own")) {
+            message += "\n\nМарка: " + RegistrationData.brand
+                    + "\nМодель: " + RegistrationData.model
+                    + "\nТип ТС: " + RegistrationData.TSType
+                    + "\nЦвет: " + RegistrationData.color
+                    + "\nГод выпуска: " + RegistrationData.year;
+        }
+        message += "\n\n Номер карты: " + RegistrationData.card;
+        return message;
+    }
+
+    private void sendMessage() {
+        Thread sender = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    GMailSender sender = new GMailSender(senderMail, senderPassword);
+                    sender.sendMail(getResources().getString(R.string.app_name), getMessage(),
+                            senderMail,
+                            recipient);
+                } catch (Exception e) {
+                    Log.e("mylog", "Error: " + e.getMessage());
+                }
+            }
+        });
+        sender.start();
     }
 
     private void request() {
@@ -176,6 +217,7 @@ public class Registration4Activity extends AppCompatActivity {
                             uploadPhotos("foto_5", Registration3Activity.photo5);
                         }
                         else if (photoType.equals("foto_5")){
+                            sendMessage();
                             prefManager.setName(RegistrationData.name);
                             prefManager.setLastName(RegistrationData.lastName);
                             prefManager.setUserPhoto(Registration1Activity.photo1);
