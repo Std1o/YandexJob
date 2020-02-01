@@ -11,7 +11,6 @@
         android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:largeHeap="true"
         android:usesCleartextTraffic="true">
         <activity android:name=".AuthActivity"
             android:screenOrientation="portrait"></activity>
