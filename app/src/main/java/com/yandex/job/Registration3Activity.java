@@ -75,12 +75,6 @@ public class Registration3Activity extends AppCompatActivity implements View.OnC
         if (requestCode == 1213 && resultCode == Activity.RESULT_OK) {
             String filePath = data.getStringExtra(ImageSelectActivity.RESULT_FILE_PATH);
             Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
-            if (selectedImage.getByteCount() >= 2097151) {
-                int size = Math.min(selectedImage.getWidth(), selectedImage.getHeight());
-                int x = (selectedImage.getWidth() - size) / 2;
-                int y = (selectedImage.getHeight() - size) / 2;
-                selectedImage = Bitmap.createBitmap(selectedImage, x, y, size, size);
-            }
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             selectedImage.compress(Bitmap.CompressFormat.JPEG, 100, baos); //bm is the bitmap object
