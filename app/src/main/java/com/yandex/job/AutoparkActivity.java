@@ -67,7 +67,7 @@ public class AutoparkActivity extends AppCompatActivity {
 
     private void getAuto() {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://some-company.svkcom.ru/api/listCar.php";
+        String url = "http://job.avto-still.ru/api/listCar.php";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -128,7 +128,7 @@ public class AutoparkActivity extends AppCompatActivity {
                 year.setText("Год выпуска: " + AutoparkActivity.list.get(position % list.size()).year);
                 trans.setText(AutoparkActivity.list.get(position % list.size()).trans);
                 Glide.with(AutoparkActivity.this)
-                        .load("http://some-company.svkcom.ru" +
+                        .load("http://job.avto-still.ru" +
                                 AutoparkActivity.list.get(position % list.size()).photo)
                         .apply(new RequestOptions().placeholder(R.drawable.progress_animation))
                         .into(ivItem);

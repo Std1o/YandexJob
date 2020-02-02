@@ -52,7 +52,7 @@ public class AuthActivity extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        String url = "http://some-company.svkcom.ru/api" + "/driverRegister.php";
+        String url = "http://job.avto-still.ru/api" + "/driverRegister.php";
         Map<String, String> map = new HashMap<>();
 
         map.put("command", "send_login");

@@ -162,7 +162,7 @@ public class Registration4Activity extends AppCompatActivity {
         System.out.println(params);
 
 
-        JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.POST, "http://some-company.svkcom.ru/api/addDriver.php",
+        JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.POST, "http://job.avto-still.ru/api/addDriver.php",
 
                 new JSONObject(params),
                 new Response.Listener<JSONObject>() {
